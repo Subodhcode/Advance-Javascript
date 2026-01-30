@@ -1,0 +1,3 @@
+npm i nodemon -g
+
+Set-ExecutionPolicy RemoteSigned -Scope CurrentUser

@@ -1,0 +1,5 @@
+npm install tailwindcss @tailwindcss/cli
+
+nodemodule->tailwindcss, jab hum thirt party package install karte hai
+
+npx @tailwindcss/cli -i ./src/input.css -o ./src/output.css --watch

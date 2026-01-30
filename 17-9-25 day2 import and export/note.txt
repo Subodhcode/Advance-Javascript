@@ -1,0 +1,16 @@
+module in js->three types of module(npm,inbuilt(nodejs),custom)
+module means koi bhi logic
+
+package.json,it manage listing,its a depencies
+
+npm init -y  ->to install packet  json file
+
+to run file command->nodemon script(filen)
+
+"type":"module"
+export import concept aayega module me
+
+nodemon type karna hai terminal me automatic server ko live karne ke liye
+
+
+custom module->export(defacult,named)
