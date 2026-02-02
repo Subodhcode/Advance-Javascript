@@ -1,0 +1,146 @@
+import React from "react";
+import Header from "../Common/Header";
+import { FaHeart, FaStar } from "react-icons/fa";
+import { products } from "../../Data/productdata";//array
+import Footer from "../Common/footer";
+import Btncomp from "../Common/Btncomp";
+
+export default function Home() {
+
+    let cname = "WsCubeTech"
+    return (
+        <>
+            <div>
+                <Header companyName={cname}
+                    phone={6354727987}
+                    email="subodht105@gmail.com"
+                    user={["ram", "ravi", "raj"]}
+                />
+
+                <section className="py-10">
+                    <div className="max-w-[1320px] mx-auto grid lg:grid-cols-[55%_auto] grid-cols-1 gap-5 item-center lg:px-0 px-[20px]">
+                        <div>
+                            <h1 className="text-[40px] lg:text-[60px] font-bold lg:leading-[70px] leading-[50px]">
+                                The experence make all the difference
+                            </h1>
+                            <p className="text-[25px] mt-4">
+                                Lorem ipsum dolor sit amet consectetur adipisicing elit.
+                                Mollitia magnam ut iure laborum quae inventore culpa aliquid,
+                                exercitationem corrupti ipsa.
+                            </p>
+
+                            <div className="flex gap-5 mt-[40px]">
+
+                                <Btncomp text={"Get Startted"}/>
+                                <Btncomp text={"Offer"}/>
+                            </div>
+                        </div>
+                        <div>
+                            <img src="./src/images/phone.jpg" alt="" />
+                        </div>
+                    </div>
+                </section>
+
+
+                <section className="py-10 ">
+                    <h2 className="text-center lg:text-[50px] text-[30px] font-bold mb-5">
+                        Get Difference Products
+                    </h2>
+                    <div className="max-w-[1320px] mx-auto grid grid-cols-6 gap-5 text-center">
+
+                        {
+                            products.map((obj, index) => {
+                                return (
+                                    <Productitem key={index} products={obj} />
+                                )
+                            })
+                        }
+
+
+
+
+
+                    </div>
+                </section>
+
+
+                <section className="py-10 ">
+                    <h2 className="text-center lg:text-[50px] text-[30px] font-bold mb-5">
+                        Get Difference Products
+                    </h2>
+                    <div className="max-w-[1320px] mx-auto grid grid-cols-6 gap-5 text-center">
+                        {products.map((obj, index) => {
+                            return (
+                                <div key={index} className=" relative shadow-xl border">
+                                    <FaHeart className="absolute right-[10px] top-0 text-[red] text-3xl" />
+                                    <img
+                                        className="w-[100%]  object-cover
+"
+                                        src={obj.image}
+                                        alt=""
+                                    />
+
+                                    <div className="p-3">
+                                        <h3 className="font-bold"></h3>
+                                        <h4>Rs 9.99</h4>
+                                        <p className="text-[12px]">Essence</p>
+                                        {obj.name}
+                                        <div className="flex justify-between mt-4">
+                                            <div className="flex">
+                                                <FaStar />
+                                                <FaStar />
+                                                <FaStar />
+                                                <FaStar />
+                                                <FaStar />
+                                            </div>
+                                             <Btncomp text={"cart"}/>
+                                        </div>
+                                    </div>
+                                </div>
+                            );
+                        })}
+                    </div>
+                </section>
+
+                <Footer name="subodh">
+                    <h1>Welcome to suboodh</h1>
+                </Footer>
+            </div>
+        </>
+    );
+}
+
+export function Productitem({ products }) {
+    let { name, price, image } = products
+    return (
+        <div className=" relative shadow-xl border">
+            <FaHeart className="absolute right-[10px] top-0 text-[red] text-3xl" />
+            <img
+                className="w-[100%]  object-cover
+"
+                src={image}
+
+            />
+
+            <div className="p-3">
+                <h3 className="font-bold"></h3>
+                <h4>Rs 9.99</h4>
+                <p className="text-[12px]">Essence</p>
+                {name}
+                <div className="flex justify-between mt-4">
+                    <div className="flex">
+                        <FaStar />
+                        <FaStar />
+                        <FaStar />
+                        <FaStar />
+                        <FaStar />
+                    </div>
+                    <button>Add to cart</button>
+                </div>
+            </div>
+        </div>
+    )
+}
+
+
+
