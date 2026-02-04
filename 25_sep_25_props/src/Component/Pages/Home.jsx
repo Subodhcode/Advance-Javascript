@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useState } from "react";
 import Header from "../Common/Header";
 import { FaHeart, FaStar } from "react-icons/fa";
 import { products } from "../../Data/productdata";//array
@@ -8,8 +8,42 @@ import Btncomp from "../Common/Btncomp";
 export default function Home() {
 
     let cname = "WsCubeTech"
+
+
+    // let showData = () => {
+    //     alert("Hello")
+    // }
+
+
+    
+    let [counter,setCounter ] =useState(0)
+    let count=1
+
+    //   let showData=()=>{
+    //    setCounter(counter+1)
+    // }
+    
+    // let addData=(a,b)=>{
+    //     alert(a+b)
+    // }
+
+    let [password,setPassword]=useState(false)
     return (
         <>
+
+
+        <input className="border-1 p-[1.5px] ml-5" type={password ? "text" : "password"} />
+        <button onClick={()=>setPassword(!password)} className="bg-red-700 mr-2 p-1 text-white cursor-pointer"> 
+            {password ? "hide" : "show"}
+        </button>
+
+          {/* <button onClick={showData} className="p-3 bg-red-500 text-white cursor-pointer"> Enguire Now {counter}</button> */}
+
+        <br />
+            <button onClick={()=>setCounter(counter+1)} className="p-3 bg-red-500 text-white cursor-pointer"> Enguire Now {counter}</button>
+
+
+
             <div>
                 <Header companyName={cname}
                     phone={6354727987}
@@ -31,8 +65,19 @@ export default function Home() {
 
                             <div className="flex gap-5 mt-[40px]">
 
-                                <Btncomp text={"Get Startted"}/>
-                                <Btncomp text={"Offer"}/>
+                               
+
+
+                                 {/* <button onClick={()=>addData(200,30)} className="p-3 bg-red-500 text-white cursor-pointer"> Enguire Now</button>
+
+                                <button onClick={showData} className="p-3 bg-red-500 text-white cursor-pointer"> Enguire Now</button>
+
+                                 <button onClick={()=>{
+                                    alert("Subodh")
+                                 }} className="p-3 bg-red-500 text-white cursor-pointer"> Enguire Now</button> */}
+
+                                <Btncomp text={"Get Startted"} />
+                                <Btncomp text={"Offer"} />
                             </div>
                         </div>
                         <div>
@@ -93,7 +138,7 @@ export default function Home() {
                                                 <FaStar />
                                                 <FaStar />
                                             </div>
-                                             <Btncomp text={"cart"}/>
+                                            <Btncomp text={"cart"} />
                                         </div>
                                     </div>
                                 </div>

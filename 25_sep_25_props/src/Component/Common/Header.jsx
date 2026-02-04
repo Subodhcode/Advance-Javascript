@@ -1,6 +1,6 @@
 import React from "react";
 import { Link } from "react-router";
-
+import { IoMdClose } from "react-icons/io";
 export default function Header({ companyName, email, phone, user }) {
   console.log(user)
   //props obejct(key value pair) retun karta hai
@@ -49,11 +49,20 @@ export default function Header({ companyName, email, phone, user }) {
               />
             </svg>
           </button>
-          <div class="hidden w-full md:block md:w-auto" id="navbar-default">
+          <div class="md:static md:h-auto fixed h-screen bg-white  left-0 top-33 w-full md:block md:w-auto" id="navbar-default">
+            <div className="md:hidden flex justify-between p-4 items-center">
+              <img src="https://static-assets-web.flixcart.com/batman-returns/batman-returns/p/images/fkheaderlogo_plus-16c774.svg" alt="" />
+
+              <button className="cursor-pointer">
+                <IoMdClose className="text-3xl " />
+              </button>
+
+
+            </div>
             <ul class="font-medium flex flex-col p-4 md:p-0 mt-4 border border-default rounded-base bg-neutral-secondary-soft md:flex-row md:space-x-8 rtl:space-x-reverse md:mt-0 md:border-0 md:bg-neutral-primary">
               <li>
                 <Link to={'/'}
-                   
+
                   class="block py-2 px-3  bg-brand rounded md:bg-transparent md:text-fg-brand md:p-0"
                   aria-current="page"
                 >
@@ -62,7 +71,7 @@ export default function Header({ companyName, email, phone, user }) {
               </li>
               <li>
                 <Link to={'/about'}
-                  
+
                   class="block py-2 px-3 text-heading rounded hover:bg-neutral-tertiary md:hover:bg-transparent md:border-0 md:hover:text-fg-brand md:p-0 md:dark:hover:bg-transparent"
                 >
                   About
@@ -70,7 +79,7 @@ export default function Header({ companyName, email, phone, user }) {
               </li>
               <li>
                 <Link to={'/Register'}
-                  
+
                   class="block py-2 px-3 text-heading rounded hover:bg-neutral-tertiary md:hover:bg-transparent md:border-0 md:hover:text-fg-brand md:p-0 md:dark:hover:bg-transparent"
                 >
                   Register
@@ -78,7 +87,7 @@ export default function Header({ companyName, email, phone, user }) {
               </li>
               <li>
                 <Link to={'/login'}
-                  
+
                   class="block py-2 px-3 text-heading rounded hover:bg-neutral-tertiary md:hover:bg-transparent md:border-0 md:hover:text-fg-brand md:p-0 md:dark:hover:bg-transparent"
                 >
                   Login
@@ -86,7 +95,7 @@ export default function Header({ companyName, email, phone, user }) {
               </li>
               <li>
                 <Link to={'/login'}
-                  
+
                   class="block py-2 px-3 text-heading rounded hover:bg-neutral-tertiary md:hover:bg-transparent md:border-0 md:hover:text-fg-brand md:p-0 md:dark:hover:bg-transparent"
                 >
                   login

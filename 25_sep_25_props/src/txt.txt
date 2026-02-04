@@ -3,3 +3,15 @@
 2.props-> “Props (short for Properties) are used in React to pass data from a parent component to a child component. They make components dynamic and reusable. Props are read-only, meaning a child component cannot modify them. React follows one-way data binding, so data flows from parent to child using props.”
 
 3.slick slider
+
+
+30-sep-25 state  management, usestate hooks
+React hooks->useState()->Data->rerender
+react ke ander event kaise fire hoga
+
+  <button onClick={()=>{
+        alert("Subodh")
+     }} className="p-3 bg-red-500 text-white cursor-pointer"> Enguire Now</button>
+
+
+     state is variable, stae apne saath manager lekar aata hai jo change karta hai
