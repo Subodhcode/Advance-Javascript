@@ -4,6 +4,7 @@ import { FaHeart, FaStar } from "react-icons/fa";
 import { products } from "../../Data/productdata";//array
 import Footer from "../Common/footer";
 import Btncomp from "../Common/Btncomp";
+import Faq from "../Faq";
 
 export default function Home() {
 
@@ -15,32 +16,60 @@ export default function Home() {
     // }
 
 
-    
-    let [counter,setCounter ] =useState(0)
-    let count=1
+
+    let [counter, setCounter] = useState(0)
+    let count = 1
 
     //   let showData=()=>{
     //    setCounter(counter+1)
     // }
-    
+
     // let addData=(a,b)=>{
     //     alert(a+b)
     // }
 
-    let [password,setPassword]=useState(false)
+    let [modal, setModal] = useState(false)
+    let [password, setPassword] = useState(false)
+
+    
     return (
         <>
+            <div className={`w-[350px] fixed bg-lime-100 left-[50%] translate-[-50%] translate-y-[-50%] duration-500  ${modal ? 'top-[50%]' : 'top-[-1000px]'}`}>
+                <h3 className="p-2 font-bold relative">Enquire Now
+                    <span onClick={()=>setModal(false)} className="absolute right-2 cursor-pointer">&times;</span>
+                </h3>
+                <form className="p-3">
+                    <div className="mb-3">
+                        <label htmlFor="">Name</label>
+                        <input type="text" className="border-1 block w-[100%] h-[30px]" />
+                    </div>
+                    <div className="mb-3">
+                        <label htmlFor="">Email</label>
+                        <input type="email" className="border-1 block w-[100%] h-[30px]" />
+                    </div>
+                    <div className="mb-3">
+                        <label htmlFor="">Phone</label>
+                        <input type="email" className="border-1 block w-[100%] h-[30px]" />
+                    </div>
+
+                    <div className="flex  justify-center">
+
+                        <button onClick={() => setModal(false)} type="button" className="bg-[red] p-5 rounded-2xl text-white font-bold cursor-pointer" >close</button>
+                    </div>
+
+                </form>
+            </div>
 
 
-        <input className="border-1 p-[1.5px] ml-5" type={password ? "text" : "password"} />
-        <button onClick={()=>setPassword(!password)} className="bg-red-700 mr-2 p-1 text-white cursor-pointer"> 
-            {password ? "hide" : "show"}
-        </button>
+            <input className="border-1 p-[1.5px] ml-5" type={password ? "text" : "password"} />
+            <button onClick={() => setPassword(!password)} className="bg-red-700 mr-2 p-1 text-white cursor-pointer">
+                {password ? "hide" : "show"}
+            </button>
 
-          {/* <button onClick={showData} className="p-3 bg-red-500 text-white cursor-pointer"> Enguire Now {counter}</button> */}
+            {/* <button onClick={showData} className="p-3 bg-red-500 text-white cursor-pointer"> Enguire Now {counter}</button> */}
 
-        <br />
-            <button onClick={()=>setCounter(counter+1)} className="p-3 bg-red-500 text-white cursor-pointer"> Enguire Now {counter}</button>
+            <br />
+            <button onClick={() => setCounter(counter + 1)} className="p-3 bg-red-500 text-white cursor-pointer"> Enguire Now {counter}</button>
 
 
 
@@ -65,10 +94,10 @@ export default function Home() {
 
                             <div className="flex gap-5 mt-[40px]">
 
-                               
 
 
-                                 {/* <button onClick={()=>addData(200,30)} className="p-3 bg-red-500 text-white cursor-pointer"> Enguire Now</button>
+
+                                {/* <button onClick={()=>addData(200,30)} className="p-3 bg-red-500 text-white cursor-pointer"> Enguire Now</button>
 
                                 <button onClick={showData} className="p-3 bg-red-500 text-white cursor-pointer"> Enguire Now</button>
 
@@ -76,8 +105,9 @@ export default function Home() {
                                     alert("Subodh")
                                  }} className="p-3 bg-red-500 text-white cursor-pointer"> Enguire Now</button> */}
 
-                                <Btncomp text={"Get Startted"} />
-                                <Btncomp text={"Offer"} />
+                                <button onClick={() => setModal(true)} className="bg-[red] p-5 rounded-2xl text-white font-bold cursor-pointer" >Modal</button>
+                                <Btncomp p={"Get Startted"} />
+                                <Btncomp p={"Offer"} />
                             </div>
                         </div>
                         <div>
@@ -146,6 +176,8 @@ export default function Home() {
                         })}
                     </div>
                 </section>
+
+                <Faq />
 
                 <Footer name="subodh">
                     <h1>Welcome to suboodh</h1>
