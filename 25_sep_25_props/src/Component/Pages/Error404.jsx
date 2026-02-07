@@ -6,7 +6,7 @@ import { Link } from 'react-router'
 export default function Error404() {
   return (
     <div>
-        <Header/>
+        
       <div className="min-h-screen flex flex-col items-center justify-center bg-gray-100 text-gray-800 px-4">
       
       <h1 className="text-7xl font-extrabold text-red-500">404</h1>
@@ -26,7 +26,7 @@ export default function Error404() {
         Go Back Home
       </Link>
     </div>
-    <Footer/>
+    
     </div>
   )
 }

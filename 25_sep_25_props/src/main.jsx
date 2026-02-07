@@ -7,6 +7,8 @@ import { BrowserRouter, Route, Routes } from 'react-router'
 import Login from './Component/Pages/login'
 import Register from './Component/Pages/Register'
 import Error404 from './Component/Pages/Error404'
+import Product from './Component/Pages/Product'
+import Layout from './Component/Common/Layout'
 
 
 
@@ -19,12 +21,17 @@ createRoot(document.getElementById('root')).render(
 
         <BrowserRouter>
             <Routes>
-                {/* Home page path  /https:localhos.123*/}
-                <Route path='/' element={<Home />} />
-                <Route path='/about' element={<About />} />
+
+                <Route element={<Layout />}>
+                    {/* Home page path  /https:localhos.123*/}
+                    <Route path='/' element={<Home />} />
+                    <Route path='/about' element={<About />} />
+
+                    <Route path='/Register' element={<Register />} />
+                    <Route path='/Product' element={<Product />} />
+                    <Route path='*' element={<Error404 />} />
+                </Route>
                 <Route path='/login' element={<Login />} />
-                <Route path='/Register' element={<Register />} />
-                <Route path='*' element={<Error404 />} />
             </Routes>
         </BrowserRouter>
     </>

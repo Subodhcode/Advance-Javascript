@@ -5,7 +5,7 @@ import Footer from '../Common/footer'
 export default function Login() {
     return (
         <div>
-            <Header />
+            
 
           <div className="antialiased bg-gray-200 text-gray-900 font-sans min-h-screen flex items-center w-full">
       <div className="w-full bg-white rounded shadow-lg p-8 m-4 md:max-w-sm md:mx-auto">
@@ -52,7 +52,7 @@ export default function Login() {
       </div>
     </div>
 
-            <Footer />
+            
         </div>
     )
 }

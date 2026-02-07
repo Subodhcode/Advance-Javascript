@@ -74,11 +74,11 @@ export default function Home() {
 
 
             <div>
-                <Header companyName={cname}
+                {/* <Header companyName={cname}
                     phone={6354727987}
                     email="subodht105@gmail.com"
                     user={["ram", "ravi", "raj"]}
-                />
+                /> */}
 
                 <section className="py-10">
                     <div className="max-w-[1320px] mx-auto grid lg:grid-cols-[55%_auto] grid-cols-1 gap-5 item-center lg:px-0 px-[20px]">
@@ -179,9 +179,9 @@ export default function Home() {
 
                 <Faq />
 
-                <Footer name="subodh">
+                {/* <Footer name="subodh">
                     <h1>Welcome to suboodh</h1>
-                </Footer>
+                </Footer> */}
             </div>
         </>
     );
