@@ -6,7 +6,7 @@ export default function Header({ companyName, email, phone, user }) {
   //props obejct(key value pair) retun karta hai
 
   return (
-    <header className="">
+    <header className="sticky top-0 left-0 w-full bg-[white]">
       <nav class="shadow-lg sticky top-0">
         <div class="max-w-[1320px] flex flex-wrap items-center justify-between mx-auto p-4">
           <a

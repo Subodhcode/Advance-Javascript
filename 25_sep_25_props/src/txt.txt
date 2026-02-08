@@ -22,3 +22,17 @@ https://wscubetech.co/ecommerce-api/categories.php
 https://wscubetech.co/ecommerce-api/brands.php
 
 https://wscubetech.co/ecommerce-api/product.php
+
+
+key
+
+page
+limit
+categories
+brands
+price_from
+price_to
+discount_from
+discoutn_to
+rating
+sorting
