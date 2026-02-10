@@ -1,11 +1,20 @@
 import axios from "axios";
 import React, { useEffect, useState } from "react";
+import ResponsivePagination from "react-responsive-pagination";
 import Loading from "../Common/Loading";
+import { Link } from "react-router";
+
 
 export default function Product() {
-  let [loader,setLoader]=useState(false)
+  let [loader, setLoader] = useState(false);
+
   let [sorting, setSorting] = useState(null);
   let [rating, setRating] = useState(null);
+  let [categoryFilter, setCategoryFilter] = useState([]);
+  let [brandFilter, setbrandFilter] = useState([]);
+  let [priceFilter, setpriceFilter] = useState([null, null]);
+  const [currentPage, setCurrentPage] = useState(1);
+  const [totalPages,setTotalPages]=useState(null);
 
   let [category, setCategory] = useState([]);
   let [Brand, setBrand] = useState([]);
@@ -25,17 +34,16 @@ export default function Product() {
   };
 
   let getProducts = () => {
-
-    setLoader(true)
+    setLoader(true);
     axios
       .get("https://wscubetech.co/ecommerce-api/products.php", {
         params: {
-          page: "",
-          limit: "",
-          category: "",
-          brands: "",
-          price_from: "",
-          price_to: "",
+          page: currentPage,
+          limit: "16",
+          categories: categoryFilter.join(","), //["ram","ravi"]//ram.ravi
+          brands: brandFilter.join(","),
+          price_from: priceFilter[0],
+          price_to: priceFilter[1],
           discount_from: "",
           discoutn_to: "",
           rating,
@@ -45,11 +53,12 @@ export default function Product() {
       .then((res) => res.data)
       .then((finalRes) => {
         window.scrollTo({
-          top:"0px",
-          behavior:"smooth"
-        })
+          top: "0px",
+          behavior: "smooth",
+        });
         setProduct(finalRes.data);
-        setLoader(false)
+        setTotalPages(finalRes.total_pages)
+        setLoader(false);
       });
   };
   useEffect(() => {
@@ -60,8 +69,8 @@ export default function Product() {
 
   useEffect(() => {
     getProducts();
-  }, [sorting,rating]);
-  
+  }, [currentPage, sorting, rating, categoryFilter, brandFilter, priceFilter]);
+
   return (
     <div>
       <div className="min-h-screen bg-gray-100 p-4">
@@ -76,7 +85,27 @@ export default function Product() {
               {category.map((obj, index) => {
                 return (
                   <label key={index} className="block">
-                    <input type="checkbox" className="mr-2" />
+                    <input
+                      value={obj.slug}
+                      onChange={(e) => {
+                        if (
+                          e.target.checked &&
+                          !categoryFilter.includes(e.target.value)
+                        ) {
+                          setCategoryFilter([
+                            ...categoryFilter,
+                            e.target.value,
+                          ]);
+                        } else
+                          setCategoryFilter(
+                            categoryFilter.filter(
+                              (value) => value != e.target.value,
+                            ),
+                          );
+                      }}
+                      type="checkbox"
+                      className="mr-2"
+                    />
                     {obj.name}
                   </label>
                 );
@@ -87,7 +116,24 @@ export default function Product() {
               {Brand.map((obj, index) => {
                 return (
                   <label key={index} className="block">
-                    <input type="checkbox" className="mr-2" />
+                    <input
+                      value={obj.slug}
+                      onChange={(e) => {
+                        if (
+                          e.target.checked &&
+                          !brandFilter.includes(e.target.value)
+                        ) {
+                          setbrandFilter([...brandFilter, e.target.value]);
+                        } else
+                          setbrandFilter(
+                            brandFilter.filter(
+                              (value) => value != e.target.value,
+                            ),
+                          );
+                      }}
+                      type="checkbox"
+                      className="mr-2"
+                    />
                     {obj.name}
                   </label>
                 );
@@ -96,20 +142,40 @@ export default function Product() {
             <h2 className="text-lg font-semibold mb-4 pt-10 ">Price</h2>
             <div className="space-y-3 ">
               <label className="block">
-                <input type="radio" className="mr-2" />
+                <input
+                  onClick={() => setpriceFilter([10, 250])}
+                  name="price"
+                  type="radio"
+                  className="mr-2"
+                />
                 Rs. 10 to Rs. 250
               </label>
               <label className="block">
-                <input type="radio" className="mr-2" />
-                Rs. 250 to Rs. 300
+                <input
+                  onClick={() => setpriceFilter([250, 500])}
+                  name="price"
+                  type="radio"
+                  className="mr-2"
+                />
+                Rs. 250 to Rs. 500
               </label>
               <label className="block">
-                <input type="radio" className="mr-2" />
-                Rs. 300 to Rs. 350
+                <input
+                  onClick={() => setpriceFilter([500, 1000])}
+                  name="price"
+                  type="radio"
+                  className="mr-2"
+                />
+                Rs. 500 to Rs. 1000
               </label>
               <label className="block">
-                <input type="radio" className="mr-2" />
-                Rs. 350 to Rs. 400
+                <input
+                  onClick={() => setpriceFilter([1000, 100000])}
+                  name="price"
+                  type="radio"
+                  className="mr-2"
+                />
+                Rs. 1000 to above
               </label>
             </div>
             <h2 className="text-lg font-semibold mb-4 pt-10">DISCOUNT RANGE</h2>
@@ -133,19 +199,19 @@ export default function Product() {
             </div>
             <h2 className="text-lg font-semibold mb-4 pt-10">RATING</h2>
             <div className="space-y-3 ">
-              <label onClick={()=>setRating(4)} className="block">
+              <label onClick={() => setRating(4)} className="block">
                 <input type="radio" name="rating" className="mr-2" />
                 4&#9733; & above
               </label>
-              <label onClick={()=>setRating(3)} className="block">
+              <label onClick={() => setRating(3)} className="block">
                 <input type="radio" name="rating" className="mr-2" />
                 3&#9733; & above
               </label>
-              <label onClick={()=>setRating(2)} className="block">
-                <input type="radio"name="rating" className="mr-2" />
+              <label onClick={() => setRating(2)} className="block">
+                <input type="radio" name="rating" className="mr-2" />
                 2&#9733; & above
               </label>
-              <label onClick={()=>setRating(1)} className="block">
+              <label onClick={() => setRating(1)} className="block">
                 <input type="radio" name="rating" className="mr-2" />
                 1&#9733; & above
               </label>
@@ -175,15 +241,19 @@ export default function Product() {
             <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4">
               {/* Product 1 */}
 
-              {
-                loader ?
-                <Loading/>
-                :
-                
+              {loader ? (
+                <Loading />
+              ) : (
                 product.map((obj, index) => (
-                <ProductItem key={index} data={obj} />
-              ))}
+                  <ProductItem key={index} data={obj} />
+                ))
+              )}
             </div>
+            <ResponsivePagination
+              current={currentPage}
+              total={totalPages}
+              onPageChange={setCurrentPage}
+            />
           </section>
         </div>
       </div>
@@ -192,7 +262,7 @@ export default function Product() {
 }
 
 function ProductItem({ data }) {
-  let { name, description, image, price } = data;
+  let { name, description, image, price,id } = data;
   return (
     <div className="border p-4 rounded">
       <img
@@ -203,6 +273,9 @@ function ProductItem({ data }) {
       <h3 className="font-semibold">{name}</h3>
       <p className="text-sm text-gray-600">{description}</p>
       <p className="font-bold mt-1">${price}</p>
+      <Link to={`/Product_details/${id}`}>
+      <button className="p-2 bg-red-500 cursor-pointer">View Details</button>
+      </Link>
     </div>
   );
 }
